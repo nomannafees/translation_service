@@ -11,12 +11,15 @@ A robust and scalable API for managing translations, handling language localizat
 and management of translations, optimized for performance with bulk insertions, caching, and chunking methods.
 
 Features
+
 Translation Management: Create, read, update, and delete translations.
 Tagging System: Tag translations with multiple labels and categories.
 Searchable Translations: Search translations by key, content, and tags.
 Bulk Operations: Efficient handling of large datasets with bulk insertions and optimized queries.
 Caching: Optimized for performance with caching and bulk data retrieval.
+
 Installation
+
 To set up and run the application on your local environment, follow these steps:
 
 1. Clone the repository
