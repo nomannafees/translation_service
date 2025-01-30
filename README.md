@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Translation Service
+Loom Video Demo
+A detailed demo of API results can be viewed via the following Loom video link:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+https://www.loom.com/share/4544d726ca62426ab8ae8b73ae65e71f?sid=bbe162f9-db5c-4bc0-aec0-57865c0de0ed
 
-## About Laravel
+Description
+A robust and scalable API for managing translations, handling language localization, and associating translations with tags. This project allows for seamless creation, retrieval, 
+and management of translations, optimized for performance with bulk insertions, caching, and chunking methods.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Features
+Translation Management: Create, read, update, and delete translations.
+Tagging System: Tag translations with multiple labels and categories.
+Searchable Translations: Search translations by key, content, and tags.
+Bulk Operations: Efficient handling of large datasets with bulk insertions and optimized queries.
+Caching: Optimized for performance with caching and bulk data retrieval.
+Installation
+To set up and run the application on your local environment, follow these steps:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository
+Use the following command to clone the repository to your local machine:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+git clone https://github.com/nomannafees/translation_service
 
-## Learning Laravel
+2. Install Composer dependencies
+Navigate into the project directory and install the required PHP dependencies using Composer cd translation_service composer install
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+3. Set up the environment file
+Must Copy the .env.example file to .env
+4. Set up the database
+If you don't already have a database set up, create one and configure it in your .env file:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+DB_CONNECTION=mysql
+ DB_HOST=127.0.0.1
+ DB_PORT=3306
+ DB_DATABASE=translation_service
+ DB_USERNAME=root
+ DB_PASSWORD=
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+5. Generate the application key
+Run the following command to generate the application key: php artisan key:generate
 
-## Laravel Sponsors
+6. Run database migrations
+Set up the database by running migrations to create the necessary tables: php artisan migrate
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Also run the seeders php artisan db:seed --class=TranslationSeeder
 
-### Premium Partners
+API Documentation
+Endpoints
+1. Create a Translation
+POST /api/translations
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+json
+Copy
+Edit
+{
+    "locale": "en",
+    "key": "home_welcome",
+    "content": "Welcome to our website!",
+    "tags": [1, 2]
+}
+2. Get All Translations
+GET /api/translations
 
-## Contributing
+Retrieve a paginated list of translations with their associated tags.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Get a Specific Translation
+GET /api/translations/{id}
 
-## Code of Conduct
+Retrieve details of a specific translation by ID.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Update a Translation
+PUT /api/translations/{id}
 
-## Security Vulnerabilities
+json
+Copy
+Edit
+{
+    "locale": "en",
+    "key": "home_welcome",
+    "content": "Welcome to our updated website!",
+    "tags": [1, 3]
+}
+5. Delete a Translation
+DELETE /api/translations/{id}
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. Search Translations
+GET /api/translations/search?tags=tag1&key=home_welcome
 
-## License
+Search translations by tags, keys, or content.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+7. Export Translations
+GET /api/translations/export
+
+Export all translations as JSON. This is optimized with caching and bulk querying.
+
+Seeder & Performance Optimization
+The seeder script allows you to insert large datasets (e.g., 100k records) efficiently using bulk inserts.
+It uses chunking to handle large datasets and caching for faster data retrieval in export operations.
