@@ -1,10 +1,6 @@
 
 Translation Service
 
-Loom Video Demo
-A detailed demo of API results can be viewed via the following Loom video link:
-
-https://www.loom.com/share/4544d726ca62426ab8ae8b73ae65e71f?sid=bbe162f9-db5c-4bc0-aec0-57865c0de0ed
 
 Description
 A robust and scalable API for managing translations, handling language localization, and associating translations with tags. This project allows for seamless creation, retrieval, 
